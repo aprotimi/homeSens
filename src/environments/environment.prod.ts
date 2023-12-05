@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  webConfig: "webConfig.json",
+  config: null
 };
