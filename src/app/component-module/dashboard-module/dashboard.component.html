@@ -1,0 +1,34 @@
+<img class="dashboard-back" src="/assets/img/dashboardBack.jpg" alt="">
+
+<button style="position: absolute;right: 0;left: 0;bottom: 50px;" (click)="getNow()" mat-button>Refresh</button>
+
+<div class="preview-container">
+  <mat-card class="preview-item" *ngFor="let room of rooms" [id]="room.room + '-room-id'">
+    <mat-card-header style="width: 100%;display: unset;">
+      <mat-card-title style="background: turquoise;display: grid;font-weight: bold;color: #1a4844;height: 50px;align-items: center;margin: auto;">Room: {{ room.room }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <div class="title">Date:</div>
+        <div>
+          {{ room.date | date:'yyyy.MM.dd HH:mm' }}
+        </div>
+      </div>
+  
+      <div>
+        <div class="title">Temperature:</div>
+        <div>
+          {{ room.temperatureC }} C
+        </div>
+      </div>
+  
+      <div>
+        <div class="title">Humidity:</div>
+        <div>
+          {{ room.humidity }} %
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</div>
