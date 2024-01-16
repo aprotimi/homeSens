@@ -3,7 +3,7 @@
 <button style="position: absolute;right: 0;left: 0;bottom: 50px;" (click)="getNow()" mat-button>Refresh</button>
 
 <div class="preview-container">
-  <mat-card class="preview-item" *ngFor="let room of rooms" [id]="room.room + '-room-id'">
+  <mat-card class="preview-item" *ngFor="let room of rooms" [id]="room.sensorId + '-room-id'">
     <mat-card-header style="width: 100%;display: unset;">
       <mat-card-title style="background: turquoise;display: grid;font-weight: bold;color: #1a4844;height: 50px;align-items: center;margin: auto;">Room: {{ room.room }}</mat-card-title>
     </mat-card-header>

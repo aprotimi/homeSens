@@ -36,7 +36,7 @@ export class FormService {
   };
 
   getNow() {
-    return this.http.get(this.BASE_URL + "WeatherForecast/GetNow", this.options)
+    return this.http.get(this.BASE_URL + "RoomSensors/GetNow", this.options)
       .pipe(
         catchError(this.handleError)
       )

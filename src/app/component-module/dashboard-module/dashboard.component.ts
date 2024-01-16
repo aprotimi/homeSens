@@ -29,28 +29,60 @@ export class DashboardComponent implements OnInit {
   getNow() {
     this.formService.getNow().subscribe(
       (response:any) => {
+        let indexList:any = [];
         if (response && response.length) {
           for (let i = 0; i < response.length; i++) {
-            let room:any = this.rooms.find((x:any) => x.room == response[i]["room"]);
-            if (room) {
-              room = response[i];
-              let r = document.getElementById(room.room + "-room-id");
-              if (r) {
-                r.classList.toggle("notification-effect");
-                setTimeout(() => {
-                  let rr = document.getElementById(room.room + "-room-id");
-                  if (rr) {
-                    rr.classList.toggle("notification-effect");
-                  }
+            let room:any = this.rooms.find((x:any) => x.sensorId == response[i]["sensorId"]);
+            let roomIndex:any = this.rooms.findIndex((x:any) => x.sensorId == response[i]["sensorId"]);
+            if (roomIndex > -1 && room && this.rooms[roomIndex]) {
+              indexList.push(roomIndex);
+              this.rooms[roomIndex] = response[i];
+              //let r = document.getElementById(room.sensorId + "-room-id");
+              // if (r) {
+              //   console.log(r)
+              //   //r.classList.add("notification-effect");
+              //   // setTimeout(() => {
+              //   //   let rr = document.getElementById(room.sensorId + "-room-id");
+              //   //   if (rr) {
+              //   //     console.log(rr)
+              //   //     rr.classList.toggle("notification-effect");
+              //   //   }
 
-                }, 1000)
-              }
+              //   // }, 1000)
+              // }
             } else {
               this.rooms.push(response[i])
             }
           }
         }
-        this.rooms = this.utilityService.setOrder(this.rooms, true, "room");
+
+        // if (indexList.length) {
+        //   for (let i = 0; i < indexList.length; i++) {
+        //     if (this.rooms[indexList[i]]) {
+        //       let rr = document.getElementById(this.rooms[indexList[i]].sensorId + "-room-id");
+        //       if (rr) {
+        //         console.log(rr)
+        //         rr.classList.toggle("notification-effect");
+        //       }
+        //     }
+        //   }
+        // }
+
+        // setTimeout(() => {
+        //   if (indexList.length) {
+        //     for (let i = 0; i < indexList.length; i++) {
+        //       if (this.rooms[indexList[i]]) {
+        //         let rr = document.getElementById(this.rooms[indexList[i]].sensorId + "-room-id");
+        //         if (rr) {
+        //           console.log(rr)
+        //           rr.classList.toggle("notification-effect");
+        //         }
+        //       }
+        //     }
+        //   }
+        // }, 6000)
+
+        this.rooms = this.utilityService.setOrder(this.rooms, true, "sensorId");
       }, error => {
 
       }
